@@ -13,6 +13,7 @@ import FooterPortal from '@/Components/FooterPortal.vue';
     <slot name="esportes"/>
     <slot name="noticiasnacionais"/>
     <footer-portal></footer-portal>
+
 </template>
 <style scoped>
 
