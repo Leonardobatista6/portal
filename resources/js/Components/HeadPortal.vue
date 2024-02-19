@@ -10,6 +10,11 @@ import {computed} from "vue";
 
 
 <template>
+
+    <Head>
+        <title>Portal jf</title>
+        <meta name="description" content="Page Description" />
+    </Head>
     <!-- Botões de navegação -->
     <div class="flex justify-center h-16 bg-stone-950">
         <div class="flex flex-row justify-center">

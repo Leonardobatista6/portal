@@ -36,7 +36,6 @@ class PublicacaoController extends Controller
     public function show(string $id)
     {
         //
-        var_dump($id);
     }
 
     /**

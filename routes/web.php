@@ -33,6 +33,11 @@ Route::get('/esportes', function () {
     return Inertia::render('Esportes');
 })->name('esportes');
 
+
+Route::get('/teste', function () {
+    return Inertia::render('Edit');
+})->name('edit');
+
                                                 //rota dinamica
 Route::resource('publicacao', PublicacaoController::class);
 
