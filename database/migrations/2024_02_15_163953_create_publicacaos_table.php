@@ -17,7 +17,7 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('categoria')->nullable();
             $table->text('titulo')->nullable();
-            $table->longText('descricao')->nullable();
+            $table->longText('conteudo')->nullable();
 
 
             $table->foreign('user_id')->references('id')->on('users');
@@ -31,7 +31,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('publicacaos',function (Blueprint $table){
-            $table->dropForeign('publucacoes_user_id_foreign');
+            $table->dropforeign('publicacaos_user_id_foreign');
             $table->dropColumn('user_id');
         });
         Schema::dropIfExists('publicacaos');

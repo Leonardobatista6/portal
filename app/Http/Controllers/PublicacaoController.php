@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Publicacao;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PublicacaoController extends Controller
 {
@@ -12,6 +15,10 @@ class PublicacaoController extends Controller
     public function index()
     {
         //
+        $publicacoes=Publicacao::all()->last();
+       // return $publicacoes;
+
+       return Inertia::render('Publicacao',['dadosDoBackend' => $publicacoes]);
     }
 
     /**
@@ -33,9 +40,14 @@ class PublicacaoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(publicacao $publicacao)
     {
         //
+            return $publicacao;
+
+      //  $conteudos= Publicacao::all();
+       // return Inertia::render('Publicacao', ['post' => $conteudos])
+     //     ->name('publicacao');
     }
 
     /**

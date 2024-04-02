@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Publicacao extends Model
 {
     use HasFactory;
-    protected $fillable=['categoria','titulo','descricao'];
+    protected $fillable=['user_id','categoria','titulo','conteudo','sub_titulo','imagem_url'];
 
 }

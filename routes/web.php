@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\PublicacaoController;
+// web.php ou api.php
+use App\Http\Controllers\EditorController;
+use Intervention\Image\Laravel\Facades\Image;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +39,37 @@ Route::get('/esportes', function () {
 })->name('esportes');
 
 
+// rota para salvar publicação
+Route::post('/salvar-conteudo', [EditorController::class, 'salvarConteudo']);
+
+
+//rota teste
+Route::get('/teste2', [\App\Http\Controllers\MeusPortsController::class, 'show']);
 Route::get('/teste', function () {
     return Inertia::render('Edit');
 })->name('edit');
 
+
+//rota teste 2
+Route::get('/editor', function () {
+    return Inertia::render('Editor');
+})->name('editor');
+
+                                  //rota para imagens
+///Route::apiResource('/file', FileController::class,);
+ Route::Post('/file', [FileController::class, 'store']);
+Route::Post('/file/principal', [FileController::class, 'imagemPrincipal']);
+Route::get('/file/getimagens', [FileController::class, 'getAllImages']);
+Route::get('/file/imgprincipal', [FileController::class, 'getPrincipal']);
+
                                                 //rota dinamica
 Route::resource('publicacao', PublicacaoController::class);
 
+//routa para imagens
+Route::Get('/foto', [FileController::class, 'salvar']);
+//Route::get('/imagens', function () {
+  //  $image = Image::read('/public/imagens');
+//});
 
 
 
@@ -61,6 +90,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('/ports', function () {
+        return Inertia::render('Ports');
+    })->name('ports');
+    Route::get('/imagem', function () {
+        return Inertia::render('PageImagem');
+    })->name('imagem');
 });
 
 

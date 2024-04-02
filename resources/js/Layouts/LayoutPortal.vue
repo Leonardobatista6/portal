@@ -2,6 +2,7 @@
 import HeadPortal from '@/Components/HeadPortal.vue';
 import FooterPortal from '@/Components/FooterPortal.vue';
 
+
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import FooterPortal from '@/Components/FooterPortal.vue';
     <slot name="economia"/>
     <slot name="esportes"/>
     <slot name="noticiasnacionais"/>
+    <slot name="publicacao"></slot>
     <footer-portal></footer-portal>
 
 </template>

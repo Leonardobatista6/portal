@@ -1,5 +1,5 @@
 <script setup>
-
+import ImageUploader from 'vue-image-upload-resize'
 </script>
 
 <template>
