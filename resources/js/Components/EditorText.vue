@@ -23,8 +23,8 @@ const toolbarSettings= {
 
 const insertImageSettings = {
     display: 'inline',
-    saveUrl: 'http://127.0.0.1:8000/file',
-    path: 'http://127.0.0.1:8000/public/imagens',
+    saveUrl: 'http://127.0.0.1:8000/file/',
+    path: 'http://127.0.0.1:8000/public/imagens/',
     success: (args) => {
         // Certifique-se de que args.file existe e contém as propriedades corretas
         if (args.file && args.file.rawFile) {
@@ -115,9 +115,12 @@ const salvarImagens = async () => {
                 <select data-te-select-init class="mx-6" v-model="categoria">
                     <option value=""></option>
                     <option value="1">Noticias Nacionais</option>
+                    <option value="6">Noticias Locais</option>
                     <option value="2">Politica</option>
                     <option value="3">Economia</option>
                     <option value="4">Esportes</option>
+                    <option value="5">Entretenimento</option>
+
                 </select>
                 <input type="text" placeholder="Digite o titulo do post" v-model="titulo">
                 <button

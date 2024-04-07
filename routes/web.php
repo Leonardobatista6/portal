@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\MeusPortsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,9 +35,18 @@ Route::get('/politica', function () {
 Route::get('/economia', function () {
     return Inertia::render('Economia');
 })->name('economia');
+
 Route::get('/esportes', function () {
     return Inertia::render('Esportes');
 })->name('esportes');
+
+Route::get('/noticiaslocal', function () {
+    return Inertia::render('NoticiasLocal');
+})->name('noticiaslocal');
+
+Route::get('/entretenimento', function () {
+    return Inertia::render('Entretenimento');
+})->name('entretenimento');
 
 
 // rota para salvar publicação
@@ -61,9 +71,13 @@ Route::get('/editor', function () {
 Route::Post('/file/principal', [FileController::class, 'imagemPrincipal']);
 Route::get('/file/getimagens', [FileController::class, 'getAllImages']);
 Route::get('/file/imgprincipal', [FileController::class, 'getPrincipal']);
+Route::delete('/file/{id}', [FileController::class, 'destroy']);
+Route::delete('/principal/{id}', [FileController::class, 'destroyPrincipal']);
+
 
                                                 //rota dinamica
 Route::resource('publicacao', PublicacaoController::class);
+Route::resource('publi', MeusPortsController::class);
 
 //routa para imagens
 Route::Get('/foto', [FileController::class, 'salvar']);

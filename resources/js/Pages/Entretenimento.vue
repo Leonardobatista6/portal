@@ -54,7 +54,7 @@ import { onBeforeMount, ref, computed } from "vue";
 import LayoutPortal from "@/Layouts/LayoutPortal.vue";
 import axios from "axios";
 
-const urlPorts = ref('http://127.0.0.1:8000/api/economia');
+const urlPorts = ref('http://127.0.0.1:8000/api/entretenimento');
 let ports = ref([]);
 const currentPage = ref(1);
 const perPage = 4;

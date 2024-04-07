@@ -1,7 +1,6 @@
 <script setup>
 import NavLink from '@/Components/NavLink.vue';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
-import {computed} from "vue";
 
 
 
@@ -33,6 +32,11 @@ import {computed} from "vue";
                 </NavLink>
             </div>
             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <NavLink :href="route('noticiaslocal')" :active="route().current('dashboard')">
+                    Noticias Local
+                </NavLink>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 <NavLink :href="route('nnacionais')" :active="route().current('dashboard')">
                     Noticias Nacionais
                 </NavLink>
@@ -50,6 +54,11 @@ import {computed} from "vue";
             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 <NavLink :href="route('esportes')" :active="route().current('dashboard')">
                     Esportes
+                </NavLink>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <NavLink :href="route('entretenimento')" :active="route().current('dashboard')">
+                    Entretenimento
                 </NavLink>
             </div>
         </div>

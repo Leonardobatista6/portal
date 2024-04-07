@@ -46,7 +46,7 @@ onBeforeUpdate(() => {
                         data-te-ripple-color="light">
                         <img
                             class="rounded-t-lg"
-                            src="https://tecdn.b-cdn.net/img/new/standard/nature/186.jpg"
+                            :src="p.imagem_url"
                             alt="" />
                         <a href="#!">
                             <div

@@ -1,25 +1,30 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from "@/Components/Welcome.vue";
 
 import axios from "axios";
 import {onBeforeMount, onBeforeUpdate, ref} from "vue";
 
-const urlPorts = ref('http://127.0.0.1:8000/api/ports');
-let ports = ref([]);
+const urlPorts = ref('http://127.0.0.1:8000/publi');
+const ports = ref([]);
+
+const deletarPost = async (postId) => {
+    try {
+        if (confirm('Tem certeza que deseja excluir este post?')) {
+            await axios.delete(`/publi/${postId}`);
+            carregaPosts();
+            // Atualizar a lista de postagens após a exclusão, se necessário
+        }
+    } catch (error) {
+        console.error('Erro ao excluir o post:', error.message);
+    }
+};
 
 const carregaPosts = async () => {
     try {
         const response = await axios.get(urlPorts.value);
-        ports.value = response.data;
-        console.log(ports.value);
+        ports.value = response.data.reverse();
     } catch (error) {
-        if (error.response && error.response.status === 401) {
-            console.error('Usuário não autenticado');
-            // Faça aqui o tratamento necessário para redirecionar para a página de login ou exibir uma mensagem adequada.
-        } else {
             console.error('Erro na requisição:', error.message);
-        }
     }
 };
 
@@ -58,7 +63,7 @@ onBeforeUpdate(() => {
                     data-te-ripple-color="light">
                     <img
                         class="rounded-t-lg"
-                        src="https://tecdn.b-cdn.net/img/new/standard/nature/186.jpg"
+                        :src="p.imagem_url"
                         alt="" />
                     <a href="#!">
                         <div
@@ -71,10 +76,10 @@ onBeforeUpdate(() => {
                         {{p.titulo}}
                     </h5>
                     <p class="text-base text-neutral-600 dark:text-neutral-200">
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
+                        {{p.sub_titulo}}
                     </p>
                 </div>
+                <button @click="deletarPost(p.id)">Excluir</button>
             </div> <!-- fim dos cards -->
         </div>
 

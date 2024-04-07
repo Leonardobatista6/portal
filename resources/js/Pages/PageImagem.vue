@@ -13,18 +13,6 @@ const imagensUrls = ref([]);
 const imgprincipal = ref([]);
 
 
-// Função para lidar com a mudança de arquivo
-const handleFileChange = (event) => {
-    // Atualize o valor de 'file' quando o usuário selecionar um arquivo
-    file.value = event.target.files[0];
-};
-
-const handleFile = (event) => {
-    // Atualize o valor de 'file' quando o usuário selecionar um arquivo
-    filePrincipal.value = event.target.files[0];
-};
-
-// Componente Vue
 export default {
     components: {
         AppLayout,
@@ -34,7 +22,7 @@ export default {
         onBeforeMount(() => {
             axios.get('http://127.0.0.1:8000/file/getimagens')
                 .then(response => {
-                    imagensUrls.value = response.data;
+                    imagensUrls.value = response.data.reverse();
                 })
                 .catch(error => {
                     console.error('Erro ao obter imagens:', error);
@@ -43,7 +31,7 @@ export default {
             // Obter a imagem principal
             axios.get('http://127.0.0.1:8000/file/imgprincipal')
                 .then(response => {
-                    imgprincipal.value = response.data;
+                    imgprincipal.value = response.data.reverse();
                 })
                 .catch(error => {
                     console.error('Erro ao obter imagens:', error);
@@ -59,6 +47,36 @@ export default {
         };
     },
     methods: {
+         async deletarImg (imagempath) {
+             try {
+                 if (confirm('Tem certeza que deseja excluir esta imagem?')) {
+                     const nomeArquivo = imagempath.split('/').pop();
+
+                     await axios.delete(`/file/${nomeArquivo}`);
+                     // Atualize a lista de imagens após a exclusão, se necessário
+                     imagensUrls.value = imagensUrls.value.filter(imageUrl => imageUrl !== imagempath); // Atualiza a lista de imagens
+                 }
+             } catch (error) {
+                 console.error('Erro ao excluir a imagem:', error.message);
+             }
+        },
+
+        async imgPrincipal (imagempath) {
+            try {
+                if (confirm('Tem certeza que deseja excluir esta imagem?')) {
+                    const nomeArquivo = imagempath.split('/').pop();
+                    await axios.delete(`/principal/${nomeArquivo}`);
+
+                    imgprincipal.value = imgprincipal.value.filter(imageUrl => imageUrl !== imagempath);
+                    imgprincipal.value = [...imgprincipal.value]; // Forçar a atualização da lista de imagens
+                    console.log('Imagem excluída com sucesso');
+                }
+            } catch (error) {
+                console.error('Erro ao excluir a imagem:', error.message);
+            }
+        },
+
+
         // Método para lidar com a mudança de arquivo
         handleFileChange(event) {
             // Atualize o valor de 'file' quando o usuário selecionar um arquivo
@@ -87,7 +105,9 @@ export default {
                 });
 
              //   console.log('Salvo com sucesso', response.data);
+                console.log(response.data)
                 alert(response.data.message);
+                onBeforeMount();
             } catch (error) {
                 console.error('Erro ao enviar a imagem', error);
             }
@@ -112,11 +132,13 @@ export default {
 
                 //   console.log('Salvo com sucesso', response.data);
                 alert(response.data.message);
+                onBeforeMount();
             } catch (error) {
                 console.error('Erro ao enviar a imagem', error);
                 alert(response.data.message);
             }
         },
+
     },
 };
 
@@ -171,6 +193,8 @@ export default {
                 <div class="flex flex-wrap mx-4">
                     <div v-for="imageUrl in imagensUrls" :key="imageUrl" class="mr-2 mb-2">
                         <img class="min-w-80 max-w-52" :src="imageUrl" alt="Imagem" />
+                        <button @click="deletarImg(imageUrl)">Excluir</button>
+                       id aqui: {{imageUrl}}
                     </div>
                 </div>
 
@@ -181,6 +205,8 @@ export default {
                 <div class="flex flex-wrap mx-4">
                     <div v-for="imageUrl in imgprincipal" :key="imageUrl" class="mr-2 mb-2">
                         <img class="min-w-80 max-w-52" :src="imageUrl" alt="Imagem" />
+                        <button @click="imgPrincipal(imageUrl)">Excluir</button>
+                        id aqui: {{imageUrl}}
                     </div>
                 </div>
 

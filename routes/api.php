@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\EconomiaController;
+use App\Http\Controllers\EntretenimentoController;
 use App\Http\Controllers\EsporteController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\MeusPortsController;
+use App\Http\Controllers\NoticiasLocalController;
 use App\Http\Controllers\NoticiasNacionaisController;
 use App\Http\Controllers\PoliticaController;
 use Illuminate\Http\Request;
@@ -31,4 +33,5 @@ Route::apiResource('/noticiasnacionais', NoticiasNacionaisController::class,);
 Route::apiResource('/politica', PoliticaController::class,);
 Route::apiResource('/esporte', EsporteController::class,);
 Route::apiResource('/economia', EconomiaController::class,);
-Route::apiResource('/ports',MeusPortsController::class,);
+Route::apiResource('/entretenimento', EntretenimentoController::class,);
+Route::apiResource('/noticiaslocal', NoticiasLocalController::class,);

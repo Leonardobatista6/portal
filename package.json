@@ -29,6 +29,7 @@
         "vue-draggable-resizable": "^3.0.0",
         "vue-image-upload-resize": "^2.3.0",
         "vue-quill-editor": "^3.0.6",
-        "vuejs-medium-editor": "^3.1.0"
+        "vuejs-medium-editor": "^3.1.0",
+        "vuejs-paginate": "^2.1.0"
     }
 }
