@@ -65,8 +65,9 @@ onBeforeMount(() => {
     <div class=" lg:grid md:grid-cols-6 lg:gap-4 lg:max-xl ">
                                                     <!-- parte de cards -->
             <div class="mx-5 lg:col-span-4 lg:ml-6 mt-3">
-                    <div>
-                        <h1 class="text-center sm:text-2xl ">Ultimas noticias Jose de Freitas</h1>
+                    <div> <strong>
+                        <h1 class="text-center text-2xl font-bold text-gray-900 sm:text-3xl border-y-2 border-red-600 p-4">Últimas Notícias</h1>
+                    </strong>
                     </div>
                 <!-- inicio dos cards -->
                 <div class="lg:grid lg:grid-cols-4 gap-6 mt-2">
@@ -164,7 +165,7 @@ onBeforeMount(() => {
 
                             <div>
                                     <div>
-                                        <h1 class="text-center text-2xl mt-5">Noticias Local</h1>
+                                        <h1 class="text-center text-2xl font-bold text-gray-900 sm:text-3xl border-y-2 border-red-600 p-4 mt-5">Notícias Local</h1>
 
                                         <!-- inicio dos cards -->
                                         <div class="grid grid-cols-4 gap-6 mt-2">
@@ -206,7 +207,7 @@ onBeforeMount(() => {
 
 
                                      <div>
-                                         <h1 class="text-center text-2xl mt-5">Noticias Nacionais</h1>
+                                         <h1 class="text-center text-2xl font-bold text-gray-900 sm:text-3xl border-y-2 border-red-600 p-4 mt-5">Noticias Nacionais</h1>
 
                                         <!-- inicio dos cards -->
                                         <div class="grid grid-cols-4 gap-6 mt-2">
@@ -247,7 +248,7 @@ onBeforeMount(() => {
                                     </div>
 
                                     <div>
-                                        <h1 class="text-center text-2xl mt-5">Política</h1>
+                                        <h1 class="text-center text-2xl font-bold text-gray-900 sm:text-3xl border-y-2 border-red-600 p-4 mt-5">Política</h1>
 
                                         <!-- inicio dos cards -->
                                         <div class="grid grid-cols-4 gap-6 mt-2">
@@ -288,7 +289,7 @@ onBeforeMount(() => {
                                         </div>
                                     </div>
                                     <div>
-                                        <h1 class="text-center text-2xl mt-5">Economia</h1>
+                                        <h1 class="text-center text-2xl font-bold text-gray-900 sm:text-3xl border-y-2 border-red-600 p-4 mt-5">Economia</h1>
 
                                         <!-- inicio dos cards -->
                                         <div class="grid grid-cols-4 gap-6 mt-2">
@@ -331,7 +332,7 @@ onBeforeMount(() => {
                                     </div>
                                                 <!-- inicio dos cards esportes-->
                                     <div>
-                                        <h1 class="text-center text-2xl mt-5">Esportes</h1>
+                                        <h1 class="text-center text-2xl font-bold text-gray-900 sm:text-3xl border-y-2 border-red-600 p-4 mt-5">Esportes</h1>
 
                                         <!-- inicio dos cards -->
                                         <div class="grid grid-cols-4 gap-6 mt-2">
@@ -373,7 +374,7 @@ onBeforeMount(() => {
                                     </div>
 
                                     <div>
-                                        <h1 class="text-center text-2xl mt-5">Entretenimento</h1>
+                                        <h1 class="text-center text-2xl font-bold text-gray-900 sm:text-3xl border-y-2 border-red-600 p-4 mt-5">Entretenimento</h1>
 
                                         <!-- inicio dos cards -->
                                         <div class="grid grid-cols-4 gap-6 mt-2">
@@ -418,8 +419,8 @@ onBeforeMount(() => {
                             </div>
             </div>
                                                 <!-- parte de anuncios lado -->
-            <div class=" mx-8 lg:col-span-2 lg:bg-indigo-600 lg:mx-10 lg:mt-3 lg:items-center">
-                <div class="">
+            <div class=" mx-8 lg:col-span-2 lg:border-l-2 border-red-600 lg:mx-10 lg:mt-3 lg:items-center">
+                <div>
                     <h2 class="sm:text-center">Anuncios</h2>
                     <div class="" >
                         <img src="https://picsum.photos/seed/picsum/300/500" class="sm:mx-auto" >

@@ -1,3 +1,51 @@
+
+<script setup>
+import { onBeforeMount, ref, computed } from "vue";
+import LayoutPortal from "@/Layouts/LayoutPortal.vue";
+import axios from "axios";
+
+const urlPorts = ref('http://127.0.0.1:8000/api/noticiasnacionais');
+let ports = ref([]);
+const currentPage = ref(1);
+const perPage = 4;
+
+const carregaPosts = async () => {
+    try {
+        const response = await axios.get(urlPorts.value);
+        ports.value = response.data.reverse();
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const pageCount = computed(() => {
+    return Math.ceil(ports.value.length / perPage);
+});
+
+const displayedPorts = computed(() => {
+    const start = (currentPage.value - 1) * perPage;
+    const end = start + perPage;
+    return ports.value.slice(start, end);
+});
+
+const handlePrev = () => {
+    if (currentPage.value > 1) {
+        currentPage.value -= 1;
+    }
+};
+
+const handleNext = () => {
+    if (currentPage.value < pageCount.value) {
+        currentPage.value += 1;
+    }
+};
+
+onBeforeMount(() => {
+    carregaPosts();
+});
+
+</script>
+
 <template>
     <layout-portal>
         <template v-slot:economia>
@@ -48,50 +96,3 @@
         </template>
     </layout-portal>
 </template>
-
-<script setup>
-import { onBeforeMount, ref, computed } from "vue";
-import LayoutPortal from "@/Layouts/LayoutPortal.vue";
-import axios from "axios";
-
-const urlPorts = ref('http://127.0.0.1:8000/api/noticiasnacionais');
-let ports = ref([]);
-const currentPage = ref(1);
-const perPage = 4;
-
-const carregaPosts = async () => {
-    try {
-        const response = await axios.get(urlPorts.value);
-        ports.value = response.data.reverse();
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-const pageCount = computed(() => {
-    return Math.ceil(ports.value.length / perPage);
-});
-
-const displayedPorts = computed(() => {
-    const start = (currentPage.value - 1) * perPage;
-    const end = start + perPage;
-    return ports.value.slice(start, end);
-});
-
-const handlePrev = () => {
-    if (currentPage.value > 1) {
-        currentPage.value -= 1;
-    }
-};
-
-const handleNext = () => {
-    if (currentPage.value < pageCount.value) {
-        currentPage.value += 1;
-    }
-};
-
-onBeforeMount(() => {
-    carregaPosts();
-});
-
-</script>
