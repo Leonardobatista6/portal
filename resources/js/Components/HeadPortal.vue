@@ -18,11 +18,10 @@ function toggleMobileMenu() {
         <title>Portal jf</title>
         <meta name="description" content="Page Description" />
 
-
     <!-- Botão de menu para dispositivos móveis -->
-    <div class="flex justify-between items-center sm:justify-center h-16 bg-gray-950 px-4 sm:px-0">
+    <div class="md:max-lg flex justify-between items-center sm:justify-center h-16 bg-gray-950 px-4 sm:px-0">
 
-            <div class="flex-shrink-0 sm:flex sm:order-first">
+            <div class="flex-shrink-0 sm:flex sm:order-first pr-20">
                 <Link :href="route('portal')">
                     <ApplicationMark class=" block h-9 w-auto" />
                 </Link>

@@ -34,7 +34,7 @@ const logout = () => {
         <Banner />
 
         <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-slate-900 border-b border-gray-100 ">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -48,18 +48,24 @@ const logout = () => {
 
                             <!-- Navigation Links -->
                             <div class="hidden b space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink class="text-stone-900" :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                <NavLink class="md:text-stone-900" :href="route('dashboard')" :active="route().current('dashboard')">
+                                   Dashboard
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink class="text-stone-900" :href="route('ports')" :active="route().current('ports')">
+                                <NavLink class="md:text-stone-900" :href="route('ports')" :active="route().current('ports')">
                                     Meus Ports
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink class="text-stone-900" :href="route('imagem')" :active="route().current('imagem')">
+                                <NavLink class="md:text-stone-900" :href="route('imagem')" :active="route().current('imagem')">
                                     Imagens
+                                </NavLink>
+                            </div>
+                            <!-- Navigation Links -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink class="md:text-stone-900" :href="route('anuncio')" :active="route().current('anuncio')" v-if="$page.props.auth.user.id === 1">
+                                    Publicidade
                                 </NavLink>
                             </div>
                         </div>
@@ -205,9 +211,24 @@ const logout = () => {
                             Dashboard
                         </ResponsiveNavLink>
                     </div>
+                    <div class="pt-2 bg-gray-200 pb-3 space-y-1">
+                        <ResponsiveNavLink :href="route('ports')" :active="route().current('ports')">
+                            Meus Ports
+                        </ResponsiveNavLink>
+                    </div>
+                    <div class="pt-2 bg-gray-200 pb-3 space-y-1">
+                        <ResponsiveNavLink :href="route('imagem')" :active="route().current('imagem')">
+                            Imagens
+                        </ResponsiveNavLink>
+                    </div>
+                    <div class="pt-2 bg-gray-200 pb-3 space-y-1">
+                        <ResponsiveNavLink :href="route('anuncio')" :active="route().current('anuncio')" v-if="$page.props.auth.user.id === 1">
+                            Publicidade
+                        </ResponsiveNavLink>
+                    </div>
 
                     <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
+                    <div class="pt-4 pb-1 border-t bg-gray-200 border-gray-200">
                         <div class="flex items-center px-4">
                             <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 me-3">
                                 <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">

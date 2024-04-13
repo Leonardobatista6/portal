@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Publicacao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class PublicacaoController extends Controller
@@ -40,19 +41,30 @@ class PublicacaoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(publicacao $publicacao)
+    public function show($titulo)
     {
-        //
-            return $publicacao;
-
-      //  $conteudos= Publicacao::all();
-       // return Inertia::render('Publicacao', ['post' => $conteudos])
-     //     ->name('publicacao');
+        $slug = Str::slug($titulo);
+        $publicacao = Publicacao::where('slug', $slug)->firstOrFail();
+        return inertia('Publicacao', ['post' => $publicacao]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+
+    public function pesquisar(Request $request)
+    {
+        // Obter a consulta do corpo da solicitação POST
+        $query = $request->input('query');
+
+        // Executar a consulta no banco de dados usando a consulta recebida
+        $pesquisa = Publicacao::where('titulo', 'like', "%$query%")->get();
+
+        // Retornar a rota de redirecionamento
+        return Inertia::render('Resultado',['dadosDoBackend' => $pesquisa]);
+    }
+
+
     public function edit(string $id)
     {
         //

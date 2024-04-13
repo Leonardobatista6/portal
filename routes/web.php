@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\MeusPortsController;
+use App\Http\Controllers\PublicidadeController;
+use App\Models\Publicacao;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\PublicacaoController;
@@ -74,10 +77,27 @@ Route::get('/file/imgprincipal', [FileController::class, 'getPrincipal']);
 Route::delete('/file/{id}', [FileController::class, 'destroy']);
 Route::delete('/principal/{id}', [FileController::class, 'destroyPrincipal']);
 
+/// parte de publicidade
+Route::delete('/publicidade/{id}', [PublicidadeController::class, 'destroy']);
+Route::delete('/publipost/{id}', [PublicidadeController::class, 'destroyPost']);
+Route::get('/publicidade/getlado', [PublicidadeController::class, 'getAnuncioLado']);
+Route::get('/publicidade/getpost', [PublicidadeController::class, 'getAnuncioPost']);
+Route::Post('/publicidade/lado', [PublicidadeController::class, 'salvarAnuncioLado']);
+Route::Post('/publicidade/post', [PublicidadeController::class, 'salvarAnuncioPost']);
+
 
                                                 //rota dinamica
 Route::resource('publicacao', PublicacaoController::class);
 Route::resource('publi', MeusPortsController::class);
+
+Route::get('/publicacao/{titulo}', [PublicacaoController::class, 'show']);
+Route::get('/pesquisa', [PublicacaoController::class, 'pesquisar']);
+Route::get('/resultado', function (Request $request) {
+    $query = $request->input('query');
+    $pesquisa = Publicacao::where('titulo', 'like', "%$query%")->get();
+    return Inertia::render('Resultado', ['dadosDaPesquisa' => $pesquisa]);
+})->name('resultado');
+
 
 //routa para imagens
 Route::Get('/foto', [FileController::class, 'salvar']);
@@ -110,6 +130,9 @@ Route::middleware([
     Route::get('/imagem', function () {
         return Inertia::render('PageImagem');
     })->name('imagem');
+    Route::get('/anuncio', function () {
+        return Inertia::render('Publicidade');
+    })->name('anuncio');
 });
 
 

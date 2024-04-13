@@ -14,6 +14,9 @@ import FooterPortal from '@/Components/FooterPortal.vue';
     <slot name="esportes"/>
     <slot name="noticiasnacionais"/>
     <slot name="publicacao"></slot>
+    <slot name="noticiasLocal"></slot>
+    <slot name="entretenimento"></slot>
+    <slot name="resultado"></slot>
     <footer-portal></footer-portal>
 
 </template>

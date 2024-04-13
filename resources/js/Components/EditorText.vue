@@ -87,6 +87,13 @@ const salvarImagens = async () => {
                 console.log('Salvo com sucesso');
 
                 alert(response.data.message);
+                document.getElementById('categoria').value = '';
+                document.getElementById('titulo').value = '';
+                document.getElementById('sub_titulo').value = '';
+                document.getElementById('imgp').value = '';
+                document.getElementById('default').value = '';
+                window.reload()
+
 
                //  Após salvar o post, salve as imagens incorporadas, se houver
               //  if (imagensIncorporadas.value.length > 0) {
@@ -108,54 +115,57 @@ const salvarImagens = async () => {
 </script>
 
 <template>
-    <div class="flex-row justify-center mx-40 bg-gray-100">
-        <div class="flex space-x-4 justify-items-center my-6 ">
-            <div class="items-center mx-auto space-x-10  ">
-                <label class="text-lg text-stone-950">Categoria:{{categoria}}</label>
-                <select data-te-select-init class="mx-6" v-model="categoria">
-                    <option value=""></option>
-                    <option value="1">Noticias Nacionais</option>
-                    <option value="6">Noticias Locais</option>
-                    <option value="2">Politica</option>
-                    <option value="3">Economia</option>
-                    <option value="4">Esportes</option>
-                    <option value="5">Entretenimento</option>
-
-                </select>
-                <input type="text" placeholder="Digite o titulo do post" v-model="titulo">
-                <button
-                    type="submit" @click="salvar()"
-                    data-te-ripple-init
-                    data-te-ripple-color="light"
-                    class="inline-block rounded bg-blue-600 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                    Publicar
-                </button>
-            </div>
-        </div>
-        <h2 class="text-center mb-2"> <strong> Titulo do Post</strong> </h2>
-        <h1 class="text-lg text-center text-stone-950 mb-2">{{titulo}}</h1>
+    <div class=" justify-center bg-gray-100">
         <div>
-            <input type="text" placeholder="Digite o sub titulo do post" v-model="subTitulo">
+                <div class="md:flex md:flex-row md:space-x-4 md:justify-items-center md:my-6 ">
+                    <div class="md:items-center md:mx-auto md:space-x-10">
+                        <label class="mx-5 md:mx-1 text-lg text-stone-950">Categoria :{{categoria}}</label>
+                        <select data-te-select-init class="md:mx-6" v-model="categoria" id="categoria">
+                            <option value=""></option>
+                            <option value="1">Noticias Nacionais</option>
+                            <option value="6">Noticias Locais</option>
+                            <option value="2">Politica</option>
+                            <option value="3">Economia</option>
+                            <option value="4">Esportes</option>
+                            <option value="5">Entretenimento</option>
 
-            <input class="mx-6" type="text" placeholder="cole o link da imagem principal" v-model="imagemUrl">
-        <div>
-            <h2 class="text-center mb-2"> <strong> Sub Titulo do Post</strong> </h2>
+                        </select>
+                        <input class="mx-5 mt-4 text-wrap" id="titulo" type="text" placeholder="Digite o titulo do post" v-model="titulo">
+                        <button
+                            type="submit" @click="salvar()"
+                            data-te-ripple-init
+                            data-te-ripple-color="light"
+                            class="inline-block rounded bg-blue-600 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                            Publicar
+                        </button>
+                    </div>
 
-            <h1 class="text-lg text-center text-stone-950 mb-2">{{subTitulo}}</h1>
+                </div>
+                          <h2 class="text-center mb-2"> <strong> Titulo</strong> </h2>
+                          <h1 class="text-lg text-center text-wrap text-stone-950 mb-2">{{titulo}}</h1>
 
+                <div class="md:flex justify-center md:flex-row">
+                        <input class="mx-5 mb-4 text-wrap" id="sub_titulo" type="text" placeholder="Digite o sub titulo do post" v-model="subTitulo">
+                            <h2 class="mx-6 md:hidden">cole aqui o link da imagem principal</h2>
+                        <input class="mx-5 md:mb-4" id="imgp" type="text" placeholder="cole o link da imagem principal" v-model="imagemUrl">
+
+                </div>
+                        <h2 class="text-center mb-2 mt-4"> <strong> Sub Titulo</strong> </h2>
+                        <h1 class="text-lg text-wrap text-center text-stone-950 mb-2 flex-wrap">{{subTitulo}}</h1>
         </div>
 
-            <div class="control-section">
-                <div class="sample-container;">
-                    <div class="default-section">
-                        <ejs-richtexteditor id="default" v-model="post" :insertVideoSettings = "insertVideoSettings"
-                                            ref="rteObj"
-                                            :insertImageSettings="insertImageSettings"
-                        ></ejs-richtexteditor>
+            <div class="lg:mx-32 mx-auto pb-6 ">
+                <div class="control-section">
+                    <div class="sample-container;">
+                        <div class="default-section">
+                            <ejs-richtexteditor id="default" v-model="post" :insertVideoSettings = "insertVideoSettings"
+                                                ref="rteObj"
+                                                :insertImageSettings="insertImageSettings"
+                            ></ejs-richtexteditor>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </template>
 
